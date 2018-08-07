@@ -1,21 +1,29 @@
-window.onload = function () {
+var topics = ["cats", "dogs", "trains", "tanks", "boats", "cars"];
 
-    var topics = ["cats", "dogs", "trains", "tanks", "boats", "cars"];
+window.onload = makeTopicButtons();
 
+function makeTopicButtons () {
+    $("#button-list").empty();
     for (i=0; i<topics.length; i++) {
-        
         var $button = $("<button/>", {
             type: "button",
             "class": "topic-button",
             id: topics[i],
             text: topics[i],
-          });
-          
-          $button.appendTo("#button-list");
-
+        });
+        $button.appendTo("#button-list");
     }
-
 }
+
+$("#add-topic-button").on("click", function () {
+    event.preventDefault();
+    
+    var newTopic = $("#topic-input").val().trim();
+
+    topics.push(newTopic);
+    makeTopicButtons();
+
+})
 
 // =====================================================================================================================================================
 // BEGIN CLICK TO ANIMATE/FREEZE
@@ -46,12 +54,14 @@ $(".gif").on("click", function () {
 // Adding click event listen listener to all buttons
 $(".topic-button").on("click", function() {
     console.log("Click reads");
-    // Grabbing and storing the data-animal property value from the button
-    var animal = $(this).attr("data-animal");
+    console.log($(this));
+    console.log($(this).attr("id"));
+    // Grabbing and storing the data-topic property value from the button
+    var topic = $(this).attr("id");
 
-    // Constructing a queryURL using the animal name
+    // Constructing a queryURL using the topic name
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        animal + "&api_key=K6iZC4QkCBOsBrvh7VWaVpSNVysKU398&limit=10";
+        topic + "&api_key=K6iZC4QkCBOsBrvh7VWaVpSNVysKU398&limit=10";
 
     // Performing an AJAX request with the queryURL
     $.ajax({
@@ -70,22 +80,22 @@ $(".topic-button").on("click", function() {
         for (var i = 0; i < results.length; i++) {
 
             // Creating and storing a div tag
-            var animalDiv = $("<div>");
+            var topicDiv = $("<div>");
 
             // Creating a paragraph tag with the result item"s rating
             var p = $("<p>").text("Rating: " + results[i].rating);
 
             // Creating and storing an image tag
-            var animalImage = $("<img>");
+            var topicImage = $("<img>");
             // Setting the src attribute of the image to a property pulled off the result item
-            animalImage.attr("src", results[i].images.fixed_height.url);
+            topicImage.attr("src", results[i].images.fixed_height.url);
 
-            // Appending the paragraph and image tag to the animalDiv
-            animalDiv.append(p);
-            animalDiv.append(animalImage);
+            // Appending the paragraph and image tag to the topicDiv
+            topicDiv.append(p);
+            topicDiv.append(topicImage);
 
-            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
-            $("#gif-display").prepend(animalDiv);
+            // Prependng the topicDiv to the HTML page in the "#gifs-appear-here" div
+            $("#gif-display").prepend(topicDiv);
         }
     });
 });
