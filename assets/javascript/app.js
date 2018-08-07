@@ -27,7 +27,7 @@ $("#add-topic-button").on("click", function () {
 
 // =====================================================================================================================================================
 // BEGIN CLICK TO ANIMATE/FREEZE
-$(".gif").on("click", function () {
+$(document).on("click", ".gif", function () {
     console.log("Animate click");
     // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
     var state = $(this).attr("data-state");
@@ -42,6 +42,15 @@ $(".gif").on("click", function () {
         $(this).attr("data-state", "still");
     }
 });
+
+document.getElementsByClassName("gif").onclick = function(event) {
+    console.log("element by id animate click");
+    console.log(event);
+}
+document.onclick = function(event) {
+    console.log("document click");
+    console.log(event);
+}
 // END CLICK TO ANIMATE/FREEZE
 // =====================================================================================================================================================
 
@@ -55,7 +64,7 @@ $(".gif").on("click", function () {
 // Adding click event listen listener to all buttons
 $(".topic-button").on("click", function() {
     $("#gif-display").empty();
-    console.log("Click reads");
+    console.log("topic button click");
     console.log($(this));
     console.log($(this).attr("id"));
     // Grabbing and storing the data-topic property value from the button
@@ -84,6 +93,7 @@ $(".topic-button").on("click", function() {
             // Creating and storing a div tag
             var topicDiv = $("<div>");
             topicDiv.attr("class", "gif");
+            topicDiv.attr("name", "gif");
 
             // Creating a paragraph tag with the result item"s rating
             var p = $("<p>").text("Rating: " + results[i].rating);
@@ -96,10 +106,14 @@ $(".topic-button").on("click", function() {
             topicImage.attr("data-animate", results[i].images.fixed_height.url);
             topicImage.attr("data-state", "still");
             topicImage.attr("class", "gif");
+            topicImage.attr("name", "gif");
 
             // Appending the paragraph and image tag to the topicDiv
             topicDiv.append(p);
             topicDiv.append(topicImage);
+            topicDiv.attr("class", "gif");
+            topicDiv.attr("name", "gif");
+
 
             // Prependng the topicDiv to the HTML page in the "#gifs-appear-here" div
             $("#gif-display").prepend(topicDiv);
@@ -108,4 +122,3 @@ $(".topic-button").on("click", function() {
 });
 // END CLICK BUTTON TO GENERATE 10 GIFS
 // =====================================================================================================================================================
-
