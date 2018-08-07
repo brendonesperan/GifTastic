@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
-    <!-- <link rel="stylesheet" href="assets/css/reset.css"> -->
+    <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript" src="assets\javascript\app.js"></script>
 
 
 
     <!-- ===================================================================================================================================================== -->
     <!-- BEGIN CLICK TO ANIMATE/FREEZE -->
+    <img src="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif" data-still="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200_s.gif"
+        data-animate="https://media1.giphy.com/media/3o85xkQpyMlnBkpB9C/200.gif" data-state="still" class="gif">
     <!-- END CLICK TO ANIMATE/FREEZE -->
     <!-- ===================================================================================================================================================== -->
 
@@ -28,44 +31,33 @@
 
     <!-- ===================================================================================================================================================== -->
     <!-- BEGIN CLICK BUTTON TO GENERATE 10 GIFS -->
+    <button class="topic-button" data-animal="cat">meow</button>
     <!-- ===================================================================================================================================================== -->
     <!-- END CLICK BUTTON TO GENERATE 10 GIFS -->
+
+    <div id="button-list"></div>
+    <div id="gif-display"></div>
+  
+    <!-- Entry Form -->
+    <div class="card card-primary">
+        <div class="card-body">
+            <form>
+            <div class="form-group row">
+                <label for="topic-input">Add a topic</label>
+                <input class="form-control" id="topic-input" type="text">
+            </div>
+            <button class="btn btn-primary" id="add-topic-btn" type="submit">Submit</button>
+            </form>
+        </div>
     
     
+
+
+
+
+
     
     <script>
-
-
-
-        // =====================================================================================================================================================
-        // BEGIN CLICK TO ANIMATE/FREEZE
-        $(".gif").on("click", function () {
-            // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
-            var state = $(this).attr("data-state");
-            // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-            // Then, set the image's data-state to animate
-            // Else set src to the data-still value
-            if (state === "still") {
-                $(this).attr("src", $(this).attr("data-animate"));
-                $(this).attr("data-state", "animate");
-            } else {
-                $(this).attr("src", $(this).attr("data-still"));
-                $(this).attr("data-state", "still");
-            }
-        });
-        // END CLICK TO ANIMATE/FREEZE
-        // =====================================================================================================================================================
-
-
-
-        // =====================================================================================================================================================
-        // BEGIN CLICK BUTTON TO GENERATE 10 GIFS
-
-        // END CLICK BUTTON TO GENERATE 10 GIFS
-        // =====================================================================================================================================================
-
-
-
         // =====================================================================================================================================================
         // BEGIN CLICK BUTTON TO UPDATE TOPIC LIST
 
@@ -74,6 +66,10 @@
 
 
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets\javascript\app.js"></script>
 
 </body>
 
